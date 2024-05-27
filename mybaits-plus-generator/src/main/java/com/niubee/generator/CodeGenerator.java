@@ -74,7 +74,7 @@ public class CodeGenerator {
             infoMap.put("applicationClassNamePrefix", StringUtils.capitalize(modulesSuffix[i]));
 
             // 5.数据表前缀，实现根据数据表创建的类名时不包括表前缀
-            String tablePrefix = modulesSuffix[i];
+            String tablePrefix = dbsSuffix[i];
 
             // 6.执行代码生成
             // 设置数据库配置
