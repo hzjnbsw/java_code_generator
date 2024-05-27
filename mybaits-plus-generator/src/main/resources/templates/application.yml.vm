@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: ${moduleName}
+  datasource:
+    url: jdbc:mysql://192.168.56.3:3306/${dbName}?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: root
+    password: abc123
+
+springdoc:
+  swagger-ui:
+    #    设置Swagger UI页面的路径
+    path: /swagger-ui.html
+    #    将tag按字母顺序排序
+    tags-sorter: alpha
+  api-docs:
+    #    OpenAPI描述的路径
+    path: /v3/api-docs
+  #    api文档的分组配置
+  group-configs:
+    #      分组的名称
+    - group: 'default'
+      #      在Swagger UI中显示的分组名称
+      display-name: '测试'
+      #      分组中包含的请求路径
+      paths-to-match: '/**'
+      #      分组中扫描的包,指定扫描使用了swagger注解的包
+      packages-to-scan: ${basePackage}
+  #    所有的参数对象都会被展平
+  default-flat-param-object: true
+
+knife4j:
+  #  启用knife4j
+  enable: true
+  setting:
+    language: zh_cn
+  #    文档配置
+  documents:

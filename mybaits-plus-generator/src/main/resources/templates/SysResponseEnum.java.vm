@@ -1,0 +1,21 @@
+package ${basePackage}.${utilsPackage};
+
+import lombok.Getter;
+
+@Getter
+public enum SysResponseEnum {
+    SUCCESS(200, "成功"),
+    FAILED(201, "失败"),
+    SERVICE_ERROR(2012, "服务异常"),
+    DATA_ERROR(204, "数据异常"),
+    LOGIN_AUTH(208, "未登陆"),
+    PERMISSION(209, "没有权限");
+    private Integer code;
+    private String message;
+
+    //枚举类的构造器一定要private，确保单例，在jvm加载时就会初始化枚举类
+    private SysResponseEnum(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+}

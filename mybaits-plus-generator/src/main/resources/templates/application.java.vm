@@ -1,0 +1,13 @@
+package ${basePackage}.${moduleFollowPackage};
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@MapperScan(basePackages = "${basePackage}.${moduleFollowPackage}.mapper")
+public class ${applicationClassNamePrefix}Application {
+    public static void main(String[] args) {
+        SpringApplication.run(${applicationClassNamePrefix}Application.class, args);
+    }
+}
