@@ -137,7 +137,9 @@ public class CodeGenerator {
                                 // 覆盖式生成
                                         enableFileOverride()
                                 // 开启lombok
-                                .enableLombok();
+                                .enableLombok()
+                                // 格式化实体类名称，这里后面都加上Entity
+                                .formatFileName("%sEntity");
                         //service策略配置
                         builder.
                                 serviceBuilder().
