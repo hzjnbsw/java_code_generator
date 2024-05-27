@@ -20,91 +20,91 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 @RestController
 @RequestMapping("${entity.toLowerCase()}")
 public class ${table.controllerName} {
-private final Logger logger=LoggerFactory.getLogger(${table.controllerName}.class);
-@Resource
-private ${table.serviceName} ${entity}Service;
+    private final Logger logger=LoggerFactory.getLogger(${table.controllerName}.class);
+    @Resource
+    private ${table.serviceName} ${entity}Service;
 
-//1.增
-@Operation(summary = "新增${table.entityPath}")
-@PostMapping("save")
-public ResponseData save(@RequestBody ${entity} ${table.entityPath}){
+    //1.增
+    @Operation(summary = "新增${table.entityPath}")
+    @PostMapping("save")
+    public ResponseData save(@RequestBody ${entity} ${table.entityPath}){
         try{
-        boolean res= ${entity}Service.save(${table.entityPath});
-        return ResponseData.ok(res);
+            boolean res= ${entity}Service.save(${table.entityPath});
+            return ResponseData.ok(res);
         }catch(Exception e){
-        logger.error("${table.entityPath}Save -=- {}",e.toString());
-        return ResponseData.fail("系统异常");
+            logger.error("${table.entityPath}Save -=- {}",e.toString());
+            return ResponseData.fail("系统异常");
         }
-        }
+    }
 
-//2.删
-//单条删除
-@Operation(summary = "单条删除${table.entityPath}")
-@DeleteMapping("remove/{id}")
-public ResponseData remove(@PathVariable("id") ${table.fields[0].columnType.type} id){
+    //2.删
+    //单条删除
+    @Operation(summary = "单条删除${table.entityPath}")
+    @DeleteMapping("remove/{id}")
+    public ResponseData remove(@PathVariable("id") ${table.fields[0].columnType.type} id){
         try{
-        boolean res= ${entity}Service.removeById(id);
-        if(res==false)
-        throw new Exception();
-        return ResponseData.ok(res);
+            boolean res= ${entity}Service.removeById(id);
+            if(res==false)
+                throw new Exception();
+            return ResponseData.ok(res);
         }catch(Exception e){
-        logger.error("${table.entityPath}Save -=- {}",e.toString());
-        return ResponseData.fail("系统异常");
+            logger.error("${table.entityPath}Save -=- {}",e.toString());
+            return ResponseData.fail("系统异常");
         }
-        }
-//批量删除
-@Operation(summary = "批量删除${table.entityPath}")
-@DeleteMapping("batchRemove")
-public ResponseData batchRemove(@RequestBody List<Long> idList){
+    }
+    //批量删除
+    @Operation(summary = "批量删除${table.entityPath}")
+    @DeleteMapping("batchRemove")
+    public ResponseData batchRemove(@RequestBody List<Long> idList){
         try{
-        boolean res= ${entity}Service.removeByIds(idList);
-        if(res==false)
-        throw new Exception();
-        return ResponseData.ok(res);
+            boolean res= ${entity}Service.removeByIds(idList);
+            if(res==false)
+                throw new Exception();
+            return ResponseData.ok(res);
         }catch(Exception e){
-        logger.error("${table.entityPath}Save -=- {}",e.toString());
-        return ResponseData.fail("系统异常");
+            logger.error("${table.entityPath}Save -=- {}",e.toString());
+            return ResponseData.fail("系统异常");
         }
-        }
+    }
 
-//3.改
-@Operation(summary = "修改${table.entityPath}")
-@PutMapping("update")
-public ResponseData updateById(@RequestBody ${entity} ${table.entityPath}){
+    //3.改
+    @Operation(summary = "修改${table.entityPath}")
+    @PutMapping("update")
+    public ResponseData updateById(@RequestBody ${entity} ${table.entityPath}){
         try{
-        boolean res= ${entity}Service.updateById(${table.entityPath});
-        if(res==false)
-        throw new Exception();
-        return ResponseData.ok(res);
+            boolean res= ${entity}Service.updateById(${table.entityPath});
+            if(res==false)
+                throw new Exception();
+            return ResponseData.ok(res);
         }catch(Exception e){
-        logger.error("${table.entityPath}Save -=- {}",e.toString());
-        return ResponseData.fail("系统异常");
+            logger.error("${table.entityPath}Save -=- {}",e.toString());
+            return ResponseData.fail("系统异常");
         }
-        }
+    }
 
-//4.查
-@Operation(summary = "根据${table.entityPath}id查询")
-@GetMapping("get/{id}")
-public ResponseData getById(@PathVariable("id") ${table.fields[0].columnType.type} id){
+    //4.查
+    @Operation(summary = "根据${table.entityPath}id查询")
+    @GetMapping("get/{id}")
+    public ResponseData getById(@PathVariable("id") ${table.fields[0].columnType.type} id){
         try{
-    ${entity} res= ${entity}Service.getById(id);
-        return ResponseData.ok(res);
+            ${entity} res= ${entity}Service.getById(id);
+            return ResponseData.ok(res);
         }catch(Exception e){
-        logger.error("${table.entityPath}Save -=- {}",e.toString());
-        return ResponseData.fail("系统异常");
+            logger.error("${table.entityPath}Save -=- {}",e.toString());
+            return ResponseData.fail("系统异常");
         }
-        }
-//分页查询
-@Operation(summary = "分页条件查询${table.entityPath}")
-@GetMapping("getList/{page}/{pageSize}")
-public ResponseData get${entity}List(@PathVariable("page") Integer page,@PathVariable("pageSize") Integer pageSize, ${entity} ${table.entityPath}){
+    }
+    //分页查询
+    @Operation(summary = "分页条件查询${table.entityPath}")
+    @GetMapping("getList/{page}/{pageSize}")
+    public ResponseData get${entity}List(@PathVariable("page") Integer page,@PathVariable("pageSize") Integer pageSize, ${entity} ${table.entityPath}){
         QueryWrapper<${entity}> query=new QueryWrapper<>(${table.entityPath});
         try{
-        IPage<${entity}> pageList= ${entity}Service.page(new Page<>(page,pageSize),query);
-        return ResponseData.ok(pageList);
+            IPage<${entity}> pageList= ${entity}Service.page(new Page<>(page,pageSize),query);
+            return ResponseData.ok(pageList);
         }catch(Exception e){
-        logger.error("get${entity}List -=- {}",e.toString());
-        return ResponseData.fail();
+            logger.error("get${entity}List -=- {}",e.toString());
+            return ResponseData.fail();
         }
-        }
-        }
+    }
+}
