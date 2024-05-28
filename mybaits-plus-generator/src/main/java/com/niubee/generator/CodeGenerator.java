@@ -45,15 +45,14 @@ public class CodeGenerator {
         String basePackage = "com.niubee.gulimall";
         infoMap.put("basePackage", basePackage);
         // 3.2工具类
-        //工具类模块名
+            //工具类模块名
         infoMap.put("utilsModuleName", "gulimall-common");
-        // 工具类子包名（主软件包名后面）
-        // 如放置统一结果返回对象
+            // 工具类子包名（主软件包名后面）
+                // 如放置统一结果返回对象
         infoMap.put("utilsPackage", "common.utils");
-        // 配置类子包名
-        // 如knife4j配置类
+                // 配置类子包名
+            // 如knife4j配置类
         infoMap.put("configPackage", "common.config");
-
         //生成各个模块的代码，要求每个模块对应一个数据库
         for (int i = 0; i < modulesSuffix.length; i++) {
             // 1.子模块名，用于指定生成代码的子模块路径
@@ -74,8 +73,8 @@ public class CodeGenerator {
             infoMap.put("applicationClassNamePrefix", StringUtils.capitalize(modulesSuffix[i]));
 
             // 5.数据表前缀，实现根据数据表创建的类名时不包括表前缀
-            String tablePrefix = dbsSuffix[i];
-
+            String tablePrefix = dbsSuffix[i] + dbNameSeparator;
+            infoMap.put("tablePrefix",tablePrefix);
             // 6.执行代码生成
             // 设置数据库配置
             FastAutoGenerator.create(String.format(url, dbName), userName, pwd)
