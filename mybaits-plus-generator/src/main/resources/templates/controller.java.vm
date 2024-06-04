@@ -107,4 +107,16 @@ public class ${table.controllerName} {
             return ResponseData.fail();
         }
     }
+    //查询全部
+    @Operation(summary = "查询全部${entityNameLower}")
+    @GetMapping("list")
+    public ResponseData getById(){
+        try{
+            List<${entityType}> res = ${entityNameLower}Service.list();
+            return ResponseData.ok(res);
+        }catch(Exception e){
+            logger.error("${entityNameLower}Query -=- {}",e.toString());
+            return ResponseData.fail("系统异常");
+        }
+    }
 }
