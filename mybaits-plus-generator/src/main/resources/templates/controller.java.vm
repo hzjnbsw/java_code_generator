@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 @Tag(name = "${entityNameLower}管理")
 @RestController
-@RequestMapping("${moduleSuffix}/${entityNameLower}")
+@RequestMapping("${moduleSuffix}/${entityNameUnderline}")
 public class ${table.controllerName} {
     private final Logger logger=LoggerFactory.getLogger(${table.controllerName}.class);
     @Resource

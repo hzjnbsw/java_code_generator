@@ -20,6 +20,10 @@ public class CustomVelocityTemplateEngine extends VelocityTemplateEngine {
         String entitySuffix = (String) customMap.get("entitySuffix");
         String entityName = tableInfo.getEntityName();
         entityName = entityName.substring(0,entityName.length()-entitySuffix.length());
+        String tablePrefix = (String) customMap.get("tablePrefix");
+        String tableName = tableInfo.getName();
+        String entityNameUnderline = tableName.substring(tablePrefix.length());
+        objectMap.put("entityNameUnderline",entityNameUnderline);
         objectMap.put("entityNameUpper",entityName);
         entityName = StringUtils.uncapitalize(entityName);
         objectMap.put("entityNameLower",entityName);
