@@ -97,13 +97,13 @@ public class ${table.controllerName} {
     //分页查询
     @Operation(summary = "分页条件查询${entityNameLower}")
     @GetMapping("getList/{page}/{pageSize}")
-    public ResponseData get${entityNameLower}List(@PathVariable("page") Integer page,@PathVariable("pageSize") Integer pageSize, ${entity} ${entityNameLower}){
+    public ResponseData get${entityNameUpper}List(@PathVariable("page") Integer page,@PathVariable("pageSize") Integer pageSize, ${entity} ${entityNameLower}){
         QueryWrapper<${entityType}> query=new QueryWrapper<>(${entityNameLower});
         try{
             IPage<${entityType}> pageList= ${entityNameLower}Service.page(new Page<>(page,pageSize),query);
             return ResponseData.ok(pageList);
         }catch(Exception e){
-            logger.error("get${entityNameLower}QueryList -=- {}",e.toString());
+            logger.error("get${entityNameUpper}QueryList -=- {}",e.toString());
             return ResponseData.fail();
         }
     }

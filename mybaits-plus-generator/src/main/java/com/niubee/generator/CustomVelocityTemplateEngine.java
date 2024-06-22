@@ -16,10 +16,13 @@ public class CustomVelocityTemplateEngine extends VelocityTemplateEngine {
     public Map<String, Object> getObjectMap(ConfigBuilder config, TableInfo tableInfo) {
         Map<String, Object> objectMap = super.getObjectMap(config, tableInfo);
         //提取数据表对应的实体名
-        String entityName = StringUtils.uncapitalize(tableInfo.getEntityName());
+        Map<String, Object> customMap = ((ConfigBuilder) objectMap.get("config")).getInjectionConfig().getCustomMap();
+        String entitySuffix = (String) customMap.get("entitySuffix");
+        String entityName = tableInfo.getEntityName();
+        entityName = entityName.substring(0,entityName.length()-entitySuffix.length());
+        objectMap.put("entityNameUpper",entityName);
+        entityName = StringUtils.uncapitalize(entityName);
         objectMap.put("entityNameLower",entityName);
-        entityName = StringUtils.capitalize(entityName);
-        objectMap.put("entityNameCapital",entityName);
         objectMap.put("entityType",tableInfo.getEntityName());
         return objectMap;
     }

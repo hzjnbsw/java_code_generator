@@ -41,10 +41,10 @@ public class CodeGenerator {
 
         // 4.自定义属性
         Map<String, Object> infoMap = new HashMap<>();
-        // 3.1 java代码的basePackage
+        // 4.1 java代码的basePackage
         String basePackage = "com.niubee.gulimall";
         infoMap.put("basePackage", basePackage);
-        // 3.2工具类
+        // 4.2工具类
             //工具类模块名
         infoMap.put("utilsModuleName", "gulimall-common");
             // 工具类子包名（主软件包名后面）
@@ -53,6 +53,9 @@ public class CodeGenerator {
                 // 配置类子包名
             // 如knife4j配置类
         infoMap.put("configPackage", "common.config");
+        // 4.3格式化实体类名称，这里后面都加上Entity
+        String entitySuffix = "Entity";
+        infoMap.put("entitySuffix", entitySuffix);
         //生成各个模块的代码，要求每个模块对应一个数据库
         for (int i = 0; i < modulesSuffix.length; i++) {
             // 1.子模块名，用于指定生成代码的子模块路径
@@ -138,7 +141,7 @@ public class CodeGenerator {
                                 // 开启lombok
                                 .enableLombok()
                                 // 格式化实体类名称，这里后面都加上Entity
-                                .formatFileName("%sEntity");
+                                .formatFileName("%s"+entitySuffix);
                         //service策略配置
                         builder.
                                 serviceBuilder().
